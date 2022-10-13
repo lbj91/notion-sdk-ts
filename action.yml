@@ -1,15 +1,30 @@
-name: "Hello World"
-description: "Greet someone and record the time"
+name: "create page in notion database"
+description: "push notion on commit"
 inputs:
-  who-to-greet: # id of input
-    description: "Who to greet"
+  GH_TOKEN:
+    description: "Github Token"
     required: true
-    default: "World"
+  NOTION_API_KEY:
+    descrition: "Notion API Key"
+    required: true
+  NOTION_DATABASE:
+    description: "Notion DB ID"
+    required: true
+  MESSAGE:
+    description: "Commit Message"
+    required: true
+  AUTHOR:
+    description: "Commit Author"
+    required: true
+  DATE:
+    description: "Commit Date"
+    required: true
+  REPOSITORY:
+    description: "Commit Repository"
+    required: true
 outputs:
   time: # id of output
     description: "The time we greeted you"
 runs:
   using: "docker"
   image: "Dockerfile"
-  args:
-    - ${{ inputs.who-to-greet }}
