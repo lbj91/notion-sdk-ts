@@ -9,7 +9,7 @@ jobs:
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Hello world action step
+      - name: push notion Step
         uses: ./ # Uses an action in the root directory
         id: noti_test
         with:
@@ -20,6 +20,7 @@ jobs:
           AUTHOR: ${{ secrets.AUTHOR }}
           DATE: ${{ secrets.DATE }}
           REPOSITORY: ${{ secrets.REPOSITORY }}
+          PROJECT_DICT: '{"notion-sdk-ts":"notion"}'
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"

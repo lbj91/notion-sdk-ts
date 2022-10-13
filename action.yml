@@ -22,6 +22,9 @@ inputs:
   REPOSITORY:
     description: "Commit Repository"
     required: true
+  PROJECT_DICT:
+    description: "Convert Project Name"
+    required: false
 outputs:
   time: # id of output
     description: "The time we greeted you"

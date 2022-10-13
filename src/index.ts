@@ -20,6 +20,8 @@ const message = core.getInput('MESSAGE');
 const author = core.getInput('AUTHOR');
 const repository = core.getInput('REPOSITORY');
 const date = core.getInput('DATE');
+const projectDict = JSON.parse(core.getInput('PROJECT_DICT'));
+const project = projectDict[repository];
 
 async function main(client:Client, database_id: string) {
 
@@ -32,7 +34,7 @@ async function main(client:Client, database_id: string) {
 }
 
 main(notion, db)
-  .then(() => addItem(notion,db,message,author,repository,date))
+  .then(() => addItem(notion,db,message,author,repository,date,project))
   .catch((err) => {
     console.error(err);
     process.exit(1);
