@@ -46,22 +46,14 @@ async function addItem(
           },
         },
         repository: {
-          rich_text: [
-            {
-              text: {
-                content: repository,
-              },
-            },
-          ],
+          select: {
+            name: repository,
+          },
         },
         branch: {
-          rich_text: [
-            {
-              text: {
-                content: branch,
-              },
-            },
-          ],
+          select: {
+            name: branch,
+          },
         },
       },
       children: [

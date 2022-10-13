@@ -16,12 +16,12 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
-          MESSAGE: initial commit
+          MESSAGE: new initial commit
           AUTHOR: lbj91
           DATE: 2022-10-13
           REPOSITORY: notion-sdk-ts
           PROJECT_DICT: '{"notion-sdk-ts":"notion"}'
-          BRANCH: main
+          BRANCH: develop
           COMMIT_CONTENT: test commit
           LINK: https://github.com/lbj91/notion-sdk-ts/commits/main
       # Use the output from the `hello` step
