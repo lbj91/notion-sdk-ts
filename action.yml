@@ -4,7 +4,7 @@ inputs:
   GH_TOKEN:
     description: "Github Token"
     required: true
-  NOTION_API_KEY:
+  NOTION_TOKEN:
     descrition: "Notion API Key"
     required: true
   NOTION_DATABASE:

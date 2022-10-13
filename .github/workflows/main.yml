@@ -14,7 +14,7 @@ jobs:
         id: hello
         with:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE: ${{ secrets.NOTION_DATABASE }}
           MESSAGE: ${{ secrets.MESSAGE }}
           AUTHOR: ${{ secrets.AUTHOR }}
