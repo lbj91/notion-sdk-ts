@@ -8,6 +8,7 @@ dotenv.config();
 
 // const key = process.env.NOTION_TOKEN ?? "";
 const key = core.getInput('NOTION_TOKEN');
+console.log(key);
 const notion = new Client({auth:key});
 // const db = process.env.NOTION_DATABASE_ID ?? "";
 // const message = process.env.MESSAGE ?? "";
@@ -19,8 +20,6 @@ const message = core.getInput('MESSAGE');
 const author = core.getInput('AUTHOR');
 const repository = core.getInput('REPOSITORY');
 const date = core.getInput('DATE');
-
-console.log(key,db,message,author,repository,date);
 
 async function main(client:Client, database_id: string) {
 

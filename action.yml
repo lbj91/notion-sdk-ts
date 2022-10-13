@@ -7,7 +7,7 @@ inputs:
   NOTION_TOKEN:
     descrition: "Notion API Key"
     required: true
-  NOTION_DATABASE:
+  NOTION_DATABASE_ID:
     description: "Notion DB ID"
     required: true
   MESSAGE:
