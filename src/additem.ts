@@ -34,7 +34,7 @@ async function addItem(client: Client, databaseId: string, message: string, auth
           }
         },
         repository: {
-          title:[
+          rich_text:[
             {
               text: {
                 content:repository
