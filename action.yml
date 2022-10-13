@@ -13,6 +13,9 @@ inputs:
   MESSAGE:
     description: "Commit Message"
     required: true
+  COMMIT_CONTENT:
+    description: "Commit Message CONTENT"
+    required: true
   AUTHOR:
     description: "Commit Author"
     required: true
@@ -28,6 +31,9 @@ inputs:
   PROJECT_DICT:
     description: "Convert Project Name"
     required: false
+  LINK:
+    description: "Commit Link"
+    required: true
 outputs:
   time: # id of output
     description: "The time we greeted you"

@@ -1,62 +1,91 @@
-import { Client } from "@notionhq/client"
+import { Client } from "@notionhq/client";
+import { brotliDecompressSync } from "zlib";
 
-async function addItem(client: Client, databaseId: string, message: string, author: string, repository: string, date: string,project: string, branch: string) {
+async function addItem(
+  client: Client,
+  databaseId: string,
+  message: string,
+  author: string,
+  repository: string,
+  date: string,
+  project: string,
+  branch: string,
+  body: string,
+  link: string
+) {
   try {
     const response = await client.pages.create({
       parent: { database_id: databaseId },
       properties: {
         message: {
-          title:[
+          title: [
             {
               text: {
-                content: message
-              }
-            }
+                content: message,
+              },
+            },
           ],
         },
         author: {
           rich_text: [
             {
               text: {
-                content: author
-              }
-            }
-          ]
+                content: author,
+              },
+            },
+          ],
         },
         project: {
           select: {
-            name: project
-          }
+            name: project,
+          },
         },
         date: {
           date: {
-            start: date
-          }
+            start: date,
+          },
         },
         repository: {
-          rich_text:[
+          rich_text: [
             {
               text: {
-                content:repository
-              }
-            }
-          ]
+                content: repository,
+              },
+            },
+          ],
         },
         branch: {
-          rich_text:[
+          rich_text: [
             {
               text: {
-                content:branch
-              }
-            }
-          ]
-        }
+                content: branch,
+              },
+            },
+          ],
+        },
       },
-    })
-    console.log(response)
-    console.log("Success! Entry added.")
+      children: [
+        {
+          object: "block",
+          type: "paragraph",
+          paragraph: {
+            rich_text: [
+              {
+                type: "text",
+                text: {
+                  content: body,
+                  link: { url: link },
+                },
+              },
+            ],
+          },
+        },
+      ],
+    });
+    console.log(response);
+    console.log("Success! Entry added.");
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 }
 
