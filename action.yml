@@ -31,7 +31,7 @@ inputs:
   PROJECT_DICT:
     description: "Convert Project Name"
     required: false
-  LINK:
+  COMMIT_LINK:
     description: "Commit Link"
     required: true
 outputs:

@@ -23,7 +23,7 @@ jobs:
           PROJECT_DICT: '{"notion-sdk-ts":"notion"}'
           BRANCH: develop
           COMMIT_CONTENT: test commit
-          LINK: https://github.com/lbj91/notion-sdk-ts/commits/main
+          COMMIT_LINK: https://github.com/lbj91/notion-sdk-ts/commits/main
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
