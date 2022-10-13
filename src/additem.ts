@@ -27,7 +27,13 @@ async function addItem(
           ],
         },
         author: {
-          people: [{ id: "", person: { email: author } }],
+          rich_text: [
+            {
+              text: {
+                content: author,
+              },
+            },
+          ],
         },
         project: {
           select: {

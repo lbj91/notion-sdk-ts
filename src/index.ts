@@ -8,13 +8,18 @@ dotenv.config();
 
 // const key = process.env.NOTION_TOKEN ?? "";
 const key = core.getInput("NOTION_TOKEN");
-console.log(key);
 const notion = new Client({ auth: key });
 // const db = process.env.NOTION_DATABASE_ID ?? "";
 // const message = process.env.MESSAGE ?? "";
 // const author = process.env.AUTHOR ?? "";
 // const repository = process.env.REPOSITORY ?? "";
 // const date = process.env.DATE ?? "";
+// const PROJECT_DICT = '{"notion-sdk-ts":"notion"}';
+// const projectDict = JSON.parse(PROJECT_DICT);
+// const project = projectDict[repository];
+// const branch = "modify/test-2";
+// const body = "test commit";
+// const link = "https://github.com/lbj91/notion-sdk-ts/commits/main";
 const db = core.getInput("NOTION_DATABASE_ID");
 const message = core.getInput("MESSAGE");
 const author = core.getInput("AUTHOR");
@@ -32,11 +37,11 @@ async function main(client: Client, database_id: string) {
   });
 
   console.log("Got response:");
-  response.results.forEach((value) => {
-    if (Object.keys(value).includes("properties")) {
-      console.dir(Object.values(value));
-    }
-  });
+  // response.results.forEach((value) => {
+  //   if (Object.keys(value).includes("properties")) {
+  //     console.dir(Object.values(value));
+  //   }
+  // });
 }
 
 main(notion, db)
