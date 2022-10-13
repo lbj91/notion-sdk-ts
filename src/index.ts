@@ -20,6 +20,8 @@ const author = core.getInput('AUTHOR');
 const repository = core.getInput('REPOSITORY');
 const date = core.getInput('DATE');
 
+console.log(key,db,message,author,repository,date);
+
 async function main(client:Client, database_id: string) {
 
   const response = await client.databases.query({
