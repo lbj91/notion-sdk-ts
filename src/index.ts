@@ -7,7 +7,7 @@ import * as github from '@actions/github';
 // dotenv.config();
 
 // const key = process.env.NOTION_TOKEN ?? "";
-const key = core.getInput('GH_TOKEN');
+const key = core.getInput('NOTION_TOKEN');
 const notion = new Client({auth:key});
 // const db = process.env.NOTION_DATABASE_ID ?? "";
 // const message = process.env.MESSAGE ?? "";
