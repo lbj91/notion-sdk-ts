@@ -27,7 +27,7 @@ async function addItem(
           ],
         },
         author: {
-          people: [{ id: author }],
+          people: [{ id: "", person: { email: author } }],
         },
         project: {
           select: {
