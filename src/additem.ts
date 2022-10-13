@@ -59,6 +59,20 @@ async function addItem(
       children: [
         {
           object: "block",
+          type: "heading_3",
+          heading_3: {
+            rich_text: [
+              {
+                type: "text",
+                text: {
+                  content: "Commit Content",
+                },
+              },
+            ],
+          },
+        },
+        {
+          object: "block",
           type: "paragraph",
           paragraph: {
             rich_text: [
@@ -73,9 +87,30 @@ async function addItem(
         },
         {
           object: "block",
-          type: "embed",
-          embed: {
-            url: link,
+          type: "heading_3",
+          heading_3: {
+            rich_text: [
+              {
+                type: "text",
+                text: {
+                  content: "Commit Link",
+                },
+              },
+            ],
+          },
+        },
+        {
+          object: "block",
+          type: "paragraph",
+          paragraph: {
+            rich_text: [
+              {
+                type: "text",
+                text: {
+                  content: link,
+                },
+              },
+            ],
           },
         },
       ],
