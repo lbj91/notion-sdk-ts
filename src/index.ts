@@ -31,7 +31,8 @@ async function main(client: Client, database_id: string) {
     database_id,
   });
 
-  console.log("Got response:", response);
+  console.log("Got response:");
+  response.results.forEach((value) => console.dir(value));
 }
 
 main(notion, db)
