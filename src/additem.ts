@@ -55,6 +55,9 @@ async function addItem(
             name: branch,
           },
         },
+        url: {
+          url: link,
+        },
       },
       children: [
         {
@@ -80,37 +83,6 @@ async function addItem(
                 type: "text",
                 text: {
                   content: body,
-                },
-              },
-            ],
-          },
-        },
-        {
-          object: "block",
-          type: "heading_3",
-          heading_3: {
-            rich_text: [
-              {
-                type: "text",
-                text: {
-                  content: "Commit Link",
-                },
-              },
-            ],
-          },
-        },
-        {
-          object: "block",
-          type: "paragraph",
-          paragraph: {
-            rich_text: [
-              {
-                type: "text",
-                text: {
-                  content: link,
-                  link: {
-                    url: link,
-                  },
                 },
               },
             ],
