@@ -66,10 +66,16 @@ async function addItem(
                 type: "text",
                 text: {
                   content: body,
-                  link: { url: link },
                 },
               },
             ],
+          },
+        },
+        {
+          object: "block",
+          type: "embed",
+          embed: {
+            url: link,
           },
         },
       ],
