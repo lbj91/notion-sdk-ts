@@ -22,6 +22,7 @@ const repository = core.getInput('REPOSITORY');
 const date = core.getInput('DATE');
 const projectDict = JSON.parse(core.getInput('PROJECT_DICT'));
 const project = projectDict[repository];
+const branch = core.getInput("BRANCH");
 
 async function main(client:Client, database_id: string) {
 
@@ -34,7 +35,7 @@ async function main(client:Client, database_id: string) {
 }
 
 main(notion, db)
-  .then(() => addItem(notion,db,message,author,repository,date,project))
+  .then(() => addItem(notion,db,message,author,repository,date,project,branch))
   .catch((err) => {
     console.error(err);
     process.exit(1);

@@ -22,6 +22,9 @@ inputs:
   REPOSITORY:
     description: "Commit Repository"
     required: true
+  BRANCH:
+    description: "Commit Branch Name"
+    required: true
   PROJECT_DICT:
     description: "Convert Project Name"
     required: false

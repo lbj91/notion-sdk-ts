@@ -1,6 +1,6 @@
 import { Client } from "@notionhq/client"
 
-async function addItem(client: Client, databaseId: string, message: string, author: string, repository: string, date: string,project: string) {
+async function addItem(client: Client, databaseId: string, message: string, author: string, repository: string, date: string,project: string, branch: string) {
   try {
     const response = await client.pages.create({
       parent: { database_id: databaseId },
@@ -38,6 +38,15 @@ async function addItem(client: Client, databaseId: string, message: string, auth
             {
               text: {
                 content:repository
+              }
+            }
+          ]
+        },
+        branch: {
+          rich_text:[
+            {
+              text: {
+                content:branch
               }
             }
           ]
