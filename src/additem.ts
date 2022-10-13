@@ -108,6 +108,9 @@ async function addItem(
                 type: "text",
                 text: {
                   content: link,
+                  link: {
+                    url: link,
+                  },
                 },
               },
             ],
