@@ -32,7 +32,11 @@ async function main(client: Client, database_id: string) {
   });
 
   console.log("Got response:");
-  response.results.forEach((value) => console.dir(value));
+  response.results.forEach((value) => {
+    if (Object.keys(value).includes("properties")) {
+      console.dir(Object.values(value));
+    }
+  });
 }
 
 main(notion, db)
