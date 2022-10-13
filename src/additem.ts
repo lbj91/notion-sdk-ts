@@ -8,8 +8,8 @@ async function addItem(client: Client, databaseId: string, message: string, auth
         message: {
           title:[
             {
-              "text": {
-                "content": message
+              text: {
+                content: message
               }
             }
           ],
@@ -32,6 +32,15 @@ async function addItem(client: Client, databaseId: string, message: string, auth
           date: {
             start: date
           }
+        },
+        repository: {
+          title:[
+            {
+              text: {
+                content:repository
+              }
+            }
+          ]
         }
       },
     })

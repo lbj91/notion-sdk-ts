@@ -4,7 +4,7 @@ import addItem from "./additem";
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 
-// dotenv.config();
+dotenv.config();
 
 // const key = process.env.NOTION_TOKEN ?? "";
 const key = core.getInput('NOTION_TOKEN');

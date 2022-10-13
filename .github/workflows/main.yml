@@ -13,7 +13,13 @@ jobs:
         uses: ./ # Uses an action in the root directory
         id: hello
         with:
-          who-to-greet: "Mona the Octocat"
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE: ${{ secrets.NOTION_DATABASE }}
+          MESSAGE: ${{ secrets.MESSAGE }}
+          AUTHOR: ${{ secrets.AUTHOR }}
+          DATE: ${{ secrets.DATE }}
+          REPOSITORY: ${{ secrets.REPOSITORY }}
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
