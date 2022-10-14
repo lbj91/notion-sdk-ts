@@ -8,7 +8,7 @@ function offsetTimezone(timeZone: string, date: Date) {
 
 function toIsoString(timeZone: string, date: Date) {
   const offset = offsetTimezone(timeZone, date);
-  const timezoneDate = new Date(date.getTime() - offset);
+  const timezoneDate = new Date(date.getTime() + offset);
   let tzo = offset,
     dif = tzo >= 0 ? "+" : "-",
     pad = function (num: Number) {
