@@ -5,4 +5,4 @@ COPY . /
 
 RUN npm ci
 
-ENTRYPOINT npm start
+ENTRYPOINT ["npm","run","start"]
