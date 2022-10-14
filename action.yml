@@ -10,33 +10,15 @@ inputs:
   NOTION_DATABASE_ID:
     description: "Notion DB ID"
     required: true
-  MESSAGE:
-    description: "Commit Message"
-    required: true
-  COMMIT_CONTENT:
-    description: "Commit Message CONTENT"
-    required: true
-  AUTHOR:
-    description: "Commit Author"
-    required: true
-  DATE:
-    description: "Commit Date"
+  OWNER:
+    description: "Repository Owner"
     required: true
   REPOSITORY:
-    description: "Commit Repository"
-    required: true
-  BRANCH:
-    description: "Commit Branch Name"
+    description: "Repository"
     required: true
   PROJECT_DICT:
     description: "Convert Project Name"
     required: false
-  COMMIT_LINK:
-    description: "Commit Link"
-    required: true
-outputs:
-  time: # id of output
-    description: "The time we greeted you"
 runs:
   using: "docker"
   image: "Dockerfile"
