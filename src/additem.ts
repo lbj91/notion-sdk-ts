@@ -1,7 +1,13 @@
 import { Client } from "@notionhq/client";
 
-function toIsoString(date: Date) {
-  var tzo = -date.getTimezoneOffset(),
+function offsetTimezone(timeZone: string, date: Date) {
+  const utcDate = new Date(date.toLocaleString("en-US", { timeZone: "UTC" }));
+  const tzDate = new Date(date.toLocaleString("en-US", { timeZone }));
+  return (tzDate.getTime() - utcDate.getTime()) / 6e4 / 60;
+}
+
+function toIsoString(timeZone: string, date: Date) {
+  var tzo = -offsetTimezone(timeZone, date),
     dif = tzo >= 0 ? "+" : "-",
     pad = function (num: Number) {
       return (num < 10 ? "0" : "") + num;
@@ -34,11 +40,11 @@ async function addItem(
   repository: string,
   date: string,
   link: string,
+  timezone: string = "UTC",
   projectname?: string
 ) {
   try {
-    const datetime = toIsoString(new Date(date));
-    console.log(datetime);
+    const datetime = toIsoString(timezone, new Date(date));
     const properties: {
       message: any;
       author: any;
