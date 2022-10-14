@@ -12,9 +12,10 @@ async function addItem(
   projectname?: string
 ) {
   try {
-    const datetime = new Date(date).toLocaleString("UTC", {
-      timeZone: timezone,
-    });
+    // const datetime = new Date(date).toLocaleString("UTC", {
+    //   timeZone: timezone,
+    // });
+    const datetime = new Date(date).toISOString();
     const properties: {
       message: any;
       author: any;
