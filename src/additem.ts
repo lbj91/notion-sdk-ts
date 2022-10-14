@@ -57,7 +57,7 @@ async function addItem(
       },
     };
     if (projectname) {
-      const project = { project: { select: { name: projectname } } };
+      const project = { select: { name: projectname } };
       properties.project = project;
     }
     const response = await client.pages.create({
