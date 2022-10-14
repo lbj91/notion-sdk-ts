@@ -7,6 +7,7 @@ function offsetTimezone(timeZone: string, date: Date) {
 }
 
 function toIsoString(timeZone: string, date: Date) {
+  console.log(date.getTime());
   const offset = offsetTimezone(timeZone, date);
   const timezoneDate = new Date(date.getTime() + offset);
   let tzo = offset,
