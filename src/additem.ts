@@ -8,7 +8,6 @@ async function addItem(
   repository: string,
   date: string,
   project: string,
-  branch: string,
   body: string,
   link: string
 ) {
@@ -47,11 +46,6 @@ async function addItem(
         repository: {
           select: {
             name: repository,
-          },
-        },
-        branch: {
-          select: {
-            name: branch,
           },
         },
         url: {

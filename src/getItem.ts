@@ -30,10 +30,11 @@ async function getCommit(
       ref,
     });
 
-    // const message = commit?.commit?.message;
-    // const author = commit?.author?.login;
-    // const url = commit?.html_url;
-    console.log(commit);
+    const message = commit?.commit?.message;
+    const author = commit?.commit?.author?.name;
+    const date = commit?.commit?.author?.date;
+    const url = commit?.html_url;
+    return { message, author, date, url };
   } catch (error) {
     console.error(error);
   }

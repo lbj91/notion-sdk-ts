@@ -60,7 +60,21 @@ main(notion, db)
     //   link
     // )
     getLastCommit(token, author, repository).then((sha) => {
-      if (sha) getCommit(token, author, repository, sha);
+      if (sha)
+        getCommit(token, author, repository, sha).then((data) => {
+          if (data && data.message && data.author && data.date && data.url)
+            addItem(
+              notion,
+              db,
+              data?.message,
+              data?.author,
+              repository,
+              data?.date,
+              project,
+              data?.message,
+              data?.url
+            );
+        });
     });
   })
   .catch((err) => {
