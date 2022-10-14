@@ -1,5 +1,20 @@
 import { Client } from "@notionhq/client";
 
+function offsetTimezone(timeZone: string, date: Date) {
+  if (timeZone === "UTC") return date.toISOString();
+  const utcDate = new Date(date.toLocaleString("en-US", { timeZone: "UTC" }));
+  const tzDate = new Date(date.toLocaleString("en-US", { timeZone }));
+  const hour = String((tzDate.getTime() - utcDate.getTime()) / 6e4 / 60);
+  let offsetString = "";
+  if (hour.length === 1) offsetString = `+0${hour}:00`;
+  else if (hour.includes("-")) {
+    if (hour.length === 2) offsetString = hour.replace("-", "-0") + ":00";
+    else offsetString = `${hour}:00`;
+  } else offsetString = `+${hour}:00`;
+
+  return date.toISOString().replace("Z", offsetString);
+}
+
 async function addItem(
   client: Client,
   databaseId: string,
@@ -12,10 +27,7 @@ async function addItem(
   projectname?: string
 ) {
   try {
-    // const datetime = new Date(date).toLocaleString("UTC", {
-    //   timeZone: timezone,
-    // });
-    const datetime = new Date(date).toISOString();
+    const datetime = offsetTimezone(timezone, new Date(date));
     const properties: {
       message: any;
       author: any;
