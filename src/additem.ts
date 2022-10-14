@@ -7,7 +7,7 @@ function offsetTimezone(timeZone: string, date: Date) {
 }
 
 function toIsoString(timeZone: string, date: Date) {
-  var tzo = offsetTimezone(timeZone, date),
+  let tzo = offsetTimezone(timeZone, date),
     dif = tzo >= 0 ? "+" : "-",
     pad = function (num: Number) {
       return (num < 10 ? "0" : "") + num;
@@ -45,7 +45,7 @@ async function addItem(
 ) {
   try {
     const datetime = toIsoString(timezone, new Date(date));
-    console.log(datetime);
+    console.log(date, timezone, datetime);
     const properties: {
       message: any;
       author: any;
