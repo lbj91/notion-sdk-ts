@@ -8,8 +8,7 @@ const client = new Client({ auth: key });
 const databaseId = core.getInput("NOTION_DATABASE_ID");
 const owner = core.getInput("OWNER");
 const repository = core.getInput("REPOSITORY");
-const projectDict = JSON.parse(core.getInput("PROJECT_DICT"));
-const projectname = projectDict[repository];
+const projectname = core.getInput("PROJECT_NAME");
 const token = core.getInput("GH_TOKEN");
 const timezone = core.getInput("TIMEZONE");
 

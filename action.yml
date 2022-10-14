@@ -16,8 +16,8 @@ inputs:
   REPOSITORY:
     description: "Repository"
     required: true
-  PROJECT_DICT:
-    description: "Convert Project Name"
+  PROJECT_NAME:
+    description: "Project Name"
     required: false
   TIMEZONE:
     description: "Convert Timezone"
