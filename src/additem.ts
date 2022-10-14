@@ -3,11 +3,11 @@ import { Client } from "@notionhq/client";
 function offsetTimezone(timeZone: string, date: Date) {
   const utcDate = new Date(date.toLocaleString("en-US", { timeZone: "UTC" }));
   const tzDate = new Date(date.toLocaleString("en-US", { timeZone }));
-  return (tzDate.getTime() - utcDate.getTime()) / 6e4 / 60;
+  return (tzDate.getTime() - utcDate.getTime()) / 6e4;
 }
 
 function toIsoString(timeZone: string, date: Date) {
-  var tzo = -offsetTimezone(timeZone, date),
+  var tzo = offsetTimezone(timeZone, date),
     dif = tzo >= 0 ? "+" : "-",
     pad = function (num: Number) {
       return (num < 10 ? "0" : "") + num;
