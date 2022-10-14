@@ -7,51 +7,61 @@ async function addItem(
   author: string,
   repository: string,
   date: string,
-  project: string,
-  body: string,
-  link: string
+  link: string,
+  timezone: string = "UTC",
+  projectname?: string
 ) {
   try {
-    const response = await client.pages.create({
-      parent: { database_id: databaseId },
-      properties: {
-        message: {
-          title: [
-            {
-              text: {
-                content: message,
-              },
+    const datetime = new Date(date).toLocaleString("UTC", {
+      timeZone: timezone,
+    });
+    const properties: {
+      message: any;
+      author: any;
+      repository: any;
+      url: any;
+      date: any;
+      project?: any;
+    } = {
+      message: {
+        title: [
+          {
+            text: {
+              content: message,
             },
-          ],
-        },
-        author: {
-          rich_text: [
-            {
-              text: {
-                content: author,
-              },
+          },
+        ],
+      },
+      author: {
+        rich_text: [
+          {
+            text: {
+              content: author,
             },
-          ],
-        },
-        project: {
-          select: {
-            name: project,
           },
-        },
-        date: {
-          date: {
-            start: date,
-          },
-        },
-        repository: {
-          select: {
-            name: repository,
-          },
-        },
-        url: {
-          url: link,
+        ],
+      },
+      repository: {
+        select: {
+          name: repository,
         },
       },
+      url: {
+        url: link,
+      },
+      date: {
+        date: {
+          start: datetime,
+        },
+      },
+    };
+    if (projectname) {
+      const project = { project: { select: { name: projectname } } };
+      properties.project = project;
+    }
+    const response = await client.pages.create({
+      parent: { database_id: databaseId },
+      properties,
       children: [
         {
           object: "block",
@@ -75,7 +85,7 @@ async function addItem(
               {
                 type: "text",
                 text: {
-                  content: body,
+                  content: message,
                 },
               },
             ],

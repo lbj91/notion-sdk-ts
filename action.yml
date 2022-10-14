@@ -19,6 +19,9 @@ inputs:
   PROJECT_DICT:
     description: "Convert Project Name"
     required: false
+  TIMEZONE:
+    description: "Convert Timezone"
+    required: false
 runs:
   using: "docker"
   image: "Dockerfile"

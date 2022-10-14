@@ -19,3 +19,4 @@ jobs:
           OWNER: lbj91
           REPOSITORY: notion-sdk-ts
           PROJECT_DICT: '{"notion-sdk-ts":"notion"}'
+          TIMEZONE: "Asia/Seoul"

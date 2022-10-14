@@ -4,13 +4,14 @@ import addItem from "./additem";
 import { getLastCommit, getCommit } from "./getItem";
 
 const key = core.getInput("NOTION_TOKEN");
-const notion = new Client({ auth: key });
-const db = core.getInput("NOTION_DATABASE_ID");
+const client = new Client({ auth: key });
+const databaseId = core.getInput("NOTION_DATABASE_ID");
 const owner = core.getInput("OWNER");
 const repository = core.getInput("REPOSITORY");
 const projectDict = JSON.parse(core.getInput("PROJECT_DICT"));
-const project = projectDict[repository];
+const projectname = projectDict[repository];
 const token = core.getInput("GH_TOKEN");
+const timezone = core.getInput("TIMEZONE");
 
 async function main(client: Client, database_id: string) {
   const response = await client.databases.query({
@@ -20,23 +21,25 @@ async function main(client: Client, database_id: string) {
   console.log("Connect Notion");
 }
 
-main(notion, db)
+main(client, databaseId)
   .then(() => {
     getLastCommit(token, owner, repository).then((sha) => {
       if (sha)
         getCommit(token, owner, repository, sha).then((data) => {
-          if (data && data.message && data.author && data.date && data.url)
+          if (data && data.message && data.author && data.date && data.url) {
+            const { message, author, date, url } = data;
             addItem(
-              notion,
-              db,
-              data?.message,
-              data?.author,
+              client,
+              databaseId,
+              message,
+              author,
               repository,
-              data?.date,
-              project,
-              data?.message,
-              data?.url
+              date,
+              url,
+              timezone,
+              projectname
             );
+          }
         });
     });
   })
