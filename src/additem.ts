@@ -7,24 +7,26 @@ function offsetTimezone(timeZone: string, date: Date) {
 }
 
 function toIsoString(timeZone: string, date: Date) {
-  let tzo = offsetTimezone(timeZone, date),
+  const offset = offsetTimezone(timeZone, date);
+  const timezoneDate = new Date(date.getTime() - offset);
+  let tzo = offset,
     dif = tzo >= 0 ? "+" : "-",
     pad = function (num: Number) {
       return (num < 10 ? "0" : "") + num;
     };
 
   return (
-    date.getFullYear() +
+    timezoneDate.getFullYear() +
     "-" +
-    pad(date.getMonth() + 1) +
+    pad(timezoneDate.getMonth() + 1) +
     "-" +
-    pad(date.getDate()) +
+    pad(timezoneDate.getDate()) +
     "T" +
-    pad(date.getHours()) +
+    pad(timezoneDate.getHours()) +
     ":" +
-    pad(date.getMinutes()) +
+    pad(timezoneDate.getMinutes()) +
     ":" +
-    pad(date.getSeconds()) +
+    pad(timezoneDate.getSeconds()) +
     dif +
     pad(Math.floor(Math.abs(tzo) / 60)) +
     ":" +
