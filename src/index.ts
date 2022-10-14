@@ -2,7 +2,7 @@ import { Client } from "@notionhq/client";
 import * as core from "@actions/core";
 import dotenv from "dotenv";
 import addItem from "./additem";
-import getItem from "./getItem";
+import { getLastCommit, getCommit } from "./getItem";
 
 // dotenv.config();
 
@@ -46,7 +46,7 @@ async function main(client: Client, database_id: string) {
 }
 
 main(notion, db)
-  .then(() =>
+  .then(() => {
     // addItem(
     //   notion,
     //   db,
@@ -59,8 +59,10 @@ main(notion, db)
     //   body,
     //   link
     // )
-    getItem(token, author, repository)
-  )
+    getLastCommit(token, author, repository).then((sha) => {
+      if (sha) getCommit(token, author, repository, sha);
+    });
+  })
   .catch((err) => {
     console.error(err);
     process.exit(1);

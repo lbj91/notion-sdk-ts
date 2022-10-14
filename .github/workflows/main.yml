@@ -21,7 +21,6 @@ jobs:
           DATE: 2022-10-13
           REPOSITORY: notion-sdk-ts
           PROJECT_DICT: '{"notion-sdk-ts":"notion"}'
-          BRANCH: modify/test
           COMMIT_CONTENT: test commit
           COMMIT_LINK: https://github.com/lbj91/notion-sdk-ts/commits/main
       # Use the output from the `hello` step
