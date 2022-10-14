@@ -1,4 +1,4 @@
-name: "create page in notion database"
+name: "push notion database last commit"
 description: "push notion on commit"
 inputs:
   GH_TOKEN:
