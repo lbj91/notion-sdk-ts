@@ -1,10 +1,10 @@
 import { Client } from "@notionhq/client";
+import * as core from "@actions/core";
 import dotenv from "dotenv";
 import addItem from "./additem";
-import * as core from "@actions/core";
-import * as github from "@actions/github";
+import getItem from "./getItem";
 
-dotenv.config();
+// dotenv.config();
 
 // const key = process.env.NOTION_TOKEN ?? "";
 const key = core.getInput("NOTION_TOKEN");
@@ -30,6 +30,7 @@ const project = projectDict[repository];
 const branch = core.getInput("BRANCH");
 const body = core.getInput("COMMIT_CONTENT");
 const link = core.getInput("COMMIT_LINK");
+const token = core.getInput("GH_TOKEN");
 
 async function main(client: Client, database_id: string) {
   const response = await client.databases.query({
@@ -46,18 +47,19 @@ async function main(client: Client, database_id: string) {
 
 main(notion, db)
   .then(() =>
-    addItem(
-      notion,
-      db,
-      message,
-      author,
-      repository,
-      date,
-      project,
-      branch,
-      body,
-      link
-    )
+    // addItem(
+    //   notion,
+    //   db,
+    //   message,
+    //   author,
+    //   repository,
+    //   date,
+    //   project,
+    //   branch,
+    //   body,
+    //   link
+    // )
+    getItem(token, author, repository)
   )
   .catch((err) => {
     console.error(err);

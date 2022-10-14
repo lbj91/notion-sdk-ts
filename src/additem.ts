@@ -1,5 +1,4 @@
 import { Client } from "@notionhq/client";
-import { brotliDecompressSync } from "zlib";
 
 async function addItem(
   client: Client,
