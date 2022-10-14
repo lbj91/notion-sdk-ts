@@ -28,6 +28,7 @@ async function addItem(
 ) {
   try {
     const datetime = offsetTimezone(timezone, new Date(date));
+    console.log(datetime);
     const properties: {
       message: any;
       author: any;
