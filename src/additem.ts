@@ -62,7 +62,7 @@ async function addItem(
     }
     const response = await client.pages.create({
       parent: { database_id: databaseId },
-      properties,
+      properties: properties,
       children: [
         {
           object: "block",
