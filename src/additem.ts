@@ -1,18 +1,29 @@
 import { Client } from "@notionhq/client";
 
-function offsetTimezone(timeZone: string, date: Date) {
-  if (timeZone === "UTC") return date.toISOString();
-  const utcDate = new Date(date.toLocaleString("en-US", { timeZone: "UTC" }));
-  const tzDate = new Date(date.toLocaleString("en-US", { timeZone }));
-  const hour = String((tzDate.getTime() - utcDate.getTime()) / 6e4 / 60);
-  let offsetString = "";
-  if (hour.length === 1) offsetString = `+0${hour}:00`;
-  else if (hour.includes("-")) {
-    if (hour.length === 2) offsetString = hour.replace("-", "-0") + ":00";
-    else offsetString = `${hour}:00`;
-  } else offsetString = `+${hour}:00`;
+function toIsoString(date: Date) {
+  var tzo = -date.getTimezoneOffset(),
+    dif = tzo >= 0 ? "+" : "-",
+    pad = function (num: Number) {
+      return (num < 10 ? "0" : "") + num;
+    };
 
-  return date.toISOString().replace("Z", offsetString);
+  return (
+    date.getFullYear() +
+    "-" +
+    pad(date.getMonth() + 1) +
+    "-" +
+    pad(date.getDate()) +
+    "T" +
+    pad(date.getHours()) +
+    ":" +
+    pad(date.getMinutes()) +
+    ":" +
+    pad(date.getSeconds()) +
+    dif +
+    pad(Math.floor(Math.abs(tzo) / 60)) +
+    ":" +
+    pad(Math.abs(tzo) % 60)
+  );
 }
 
 async function addItem(
@@ -23,12 +34,10 @@ async function addItem(
   repository: string,
   date: string,
   link: string,
-  timezone: string = "UTC",
   projectname?: string
 ) {
   try {
-    const datetime = offsetTimezone(timezone, new Date(date));
-    console.log(datetime);
+    const datetime = toIsoString(new Date(date));
     const properties: {
       message: any;
       author: any;

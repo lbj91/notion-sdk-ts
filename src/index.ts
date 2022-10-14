@@ -36,7 +36,6 @@ main(client, databaseId)
               repository,
               date,
               url,
-              timezone,
               projectname
             );
           }
