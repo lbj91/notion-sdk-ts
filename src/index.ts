@@ -1,6 +1,6 @@
 import { Client } from "@notionhq/client";
 import * as core from "@actions/core";
-import addItem from "./additem";
+import addItem from "./addItem";
 import { getLastCommit, getCommit } from "./getItem";
 
 const key = core.getInput("NOTION_TOKEN");
