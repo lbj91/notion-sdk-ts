@@ -1,7 +1,7 @@
 import { Client } from "@notionhq/client";
 import * as core from "@actions/core";
 import addItem from "./addItem";
-import { getLastCommit, getCommit } from "./getItem";
+import { getLastCommit, getCommit, getPushEvent } from "./getItem";
 
 const key = core.getInput("NOTION_TOKEN");
 const client = new Client({ auth: key });
@@ -22,25 +22,26 @@ async function main(client: Client, database_id: string) {
 
 main(client, databaseId)
   .then(() => {
-    getLastCommit(token, owner, repository).then((sha) => {
-      if (sha)
-        getCommit(token, owner, repository, sha).then((data) => {
-          if (data && data.message && data.author && data.date && data.url) {
-            const { message, author, date, url } = data;
-            addItem(
-              client,
-              databaseId,
-              message,
-              author,
-              repository,
-              date,
-              url,
-              timezone,
-              projectname
-            );
-          }
-        });
-    });
+    getPushEvent(token, owner, repository);
+    // getLastCommit(token, owner, repository).then((sha) => {
+    //   if (sha)
+    //     getCommit(token, owner, repository, sha).then((data) => {
+    //       if (data && data.message && data.author && data.date && data.url) {
+    //         const { message, author, date, url } = data;
+    //         addItem(
+    //           client,
+    //           databaseId,
+    //           message,
+    //           author,
+    //           repository,
+    //           date,
+    //           url,
+    //           timezone,
+    //           projectname
+    //         );
+    //       }
+    //     });
+    // });
   })
   .catch((err) => {
     console.error(err);
