@@ -2,13 +2,17 @@ import { Client } from "@notionhq/client";
 import * as core from "@actions/core";
 import addItem from "./addItem";
 import { getLastCommit, getCommit, getPushEvent } from "./getItem";
+import dotenv from "dotenv";
 
-const key = core.getInput("NOTION_TOKEN");
+dotenv.config();
+
+const key = process.env.NOTION_TOKEN ?? core.getInput("NOTION_TOKEN");
 const client = new Client({ auth: key });
-const databaseId = core.getInput("NOTION_DATABASE_ID");
-const owner = core.getInput("OWNER");
-const repository = core.getInput("REPOSITORY");
-const projectname = core.getInput("PROJECT_NAME");
+const databaseId =
+  process.env.NOTION_DATABASE_ID ?? core.getInput("NOTION_DATABASE_ID");
+const owner = process.env.OWNER ?? core.getInput("OWNER");
+const repository = process.env.REPOSITORY ?? core.getInput("REPOSITORY");
+const projectname = process.env.PROJECT_NAME ?? core.getInput("PROJECT_NAME");
 const token = core.getInput("GH_TOKEN");
 const timezone = core.getInput("TIMEZONE");
 
