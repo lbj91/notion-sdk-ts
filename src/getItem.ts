@@ -46,7 +46,9 @@ async function getPushEvent(token: string, owner: string, repo: string) {
     console.log("get context??", github.context.eventName);
     if (github.context.eventName === "push") {
       const pushPayload = github.context.payload;
+      const { data: commit } = github.context.payload;
       console.log("get event", pushPayload);
+      console.log("commit?", commit);
     }
   } catch (error) {
     console.error(error);
