@@ -40,4 +40,28 @@ async function getCommit(
   }
 }
 
-export { getLastCommit, getCommit };
+async function getPushEvent(token: string) {
+  try {
+    let message: string = "",
+      timestamp: string = "",
+      url: string = "",
+      author: string = "";
+    if (github.context.eventName === "push") {
+      const pushPayload = github.context.payload;
+      // console.log("get event", pushPayload);
+      const { commits, repository } = pushPayload;
+      commits?.forEach((commit: any) => {
+        message = commit.message;
+        timestamp = commit.timestamp;
+        url = commit.url;
+        author = commit.author.name;
+      });
+      const repo = repository?.name ?? "";
+      return { message, timestamp, url, author, repo };
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export { getLastCommit, getCommit, getPushEvent };

@@ -1,1 +1,1 @@
-# github action practice
+# notification git commit to notion database
