@@ -26,7 +26,29 @@ async function main(client: Client, database_id: string) {
 
 main(client, databaseId)
   .then(() => {
-    getPushEvent(token, owner, repository);
+    getPushEvent(token).then((data) => {
+      if (
+        data &&
+        data.message &&
+        data.author &&
+        data.timestamp &&
+        data.url &&
+        data.repo
+      ) {
+        const { message, author, timestamp, url, repo } = data;
+        addItem(
+          client,
+          databaseId,
+          message,
+          author,
+          repo,
+          timestamp,
+          url,
+          timezone,
+          projectname
+        );
+      }
+    });
     // getLastCommit(token, owner, repository).then((sha) => {
     //   if (sha)
     //     getCommit(token, owner, repository, sha).then((data) => {

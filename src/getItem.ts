@@ -40,15 +40,24 @@ async function getCommit(
   }
 }
 
-async function getPushEvent(token: string, owner: string, repo: string) {
+async function getPushEvent(token: string) {
   try {
     const octokit = github.getOctokit(token);
+    let message: string = "",
+      timestamp: string = "",
+      url: string = "",
+      author: string = "";
     console.log("get context??", github.context.eventName);
     if (github.context.eventName === "push") {
       const pushPayload = github.context.payload;
-      const { data: commit } = github.context.payload;
       console.log("get event", pushPayload);
-      console.log("commit?", commit);
+      const { commits, repository } = pushPayload;
+      commits?.forEach((commit: any) => {
+        let { message, timestamp, url } = commit;
+        author = commit.author.name;
+      });
+      const repo = repository?.name ?? "";
+      return { message, timestamp, url, author, repo };
     }
   } catch (error) {
     console.error(error);
