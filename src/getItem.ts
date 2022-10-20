@@ -53,7 +53,9 @@ async function getPushEvent(token: string) {
       console.log("get event", pushPayload);
       const { commits, repository } = pushPayload;
       commits?.forEach((commit: any) => {
-        let { message, timestamp, url } = commit;
+        message = commit.message;
+        timestamp = commit.timestamp;
+        url = commit.url;
         author = commit.author.name;
       });
       const repo = repository?.name ?? "";
