@@ -42,15 +42,13 @@ async function getCommit(
 
 async function getPushEvent(token: string) {
   try {
-    const octokit = github.getOctokit(token);
     let message: string = "",
       timestamp: string = "",
       url: string = "",
       author: string = "";
-    console.log("get context??", github.context.eventName);
     if (github.context.eventName === "push") {
       const pushPayload = github.context.payload;
-      console.log("get event", pushPayload);
+      // console.log("get event", pushPayload);
       const { commits, repository } = pushPayload;
       commits?.forEach((commit: any) => {
         message = commit.message;

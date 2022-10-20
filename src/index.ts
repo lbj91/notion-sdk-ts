@@ -50,25 +50,6 @@ main(client, databaseId)
         );
       }
     });
-    // getLastCommit(token, owner, repository).then((sha) => {
-    //   if (sha)
-    //     getCommit(token, owner, repository, sha).then((data) => {
-    //       if (data && data.message && data.author && data.date && data.url) {
-    //         const { message, author, date, url } = data;
-    //         addItem(
-    //           client,
-    //           databaseId,
-    //           message,
-    //           author,
-    //           repository,
-    //           date,
-    //           url,
-    //           timezone,
-    //           projectname
-    //         );
-    //       }
-    //     });
-    // });
   })
   .catch((err) => {
     console.error(err);
