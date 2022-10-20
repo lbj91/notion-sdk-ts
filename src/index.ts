@@ -27,6 +27,7 @@ async function main(client: Client, database_id: string) {
 main(client, databaseId)
   .then(() => {
     getPushEvent(token).then((data) => {
+      console.log(data);
       if (
         data &&
         data.message &&
