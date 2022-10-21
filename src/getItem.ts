@@ -1,67 +1,44 @@
 import * as github from "@actions/github";
 
-async function getLastCommit(token: string, owner: string, repo: string) {
-  try {
-    const octokit = github.getOctokit(token);
-
-    const { data: commit } = await octokit.rest.repos.listCommits({
-      owner,
-      repo,
-    });
-    const sha = commit[0]?.sha;
-    return sha;
-  } catch (error) {
-    console.error(error);
-  }
+interface Commit {
+  message: string;
+  timestamp: string;
+  url: string;
+  author: string;
+  repository: string;
 }
 
-async function getCommit(
-  token: string,
-  owner: string,
-  repo: string,
-  ref: string
-) {
-  try {
-    const octokit = github.getOctokit(token);
-
-    const { data: commit } = await octokit.rest.repos.getCommit({
-      owner,
-      repo,
-      ref,
-    });
-
-    const message = commit?.commit?.message;
-    const author = commit?.commit?.author?.name;
-    const date = commit?.commit?.author?.date;
-    const url = commit?.html_url;
-    return { message, author, date, url };
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-async function getPushEvent(token: string) {
+async function getPushEvent() {
   try {
     let message: string = "",
       timestamp: string = "",
       url: string = "",
       author: string = "";
+    let commitList: Commit[] = [];
     if (github.context.eventName === "push") {
       const pushPayload = github.context.payload;
-      // console.log("get event", pushPayload);
+      console.log("get event", pushPayload);
       const { commits, repository } = pushPayload;
       commits?.forEach((commit: any) => {
-        message = commit.message;
-        timestamp = commit.timestamp;
-        url = commit.url;
-        author = commit.author.name;
+        let commitObject: Commit = {
+          message,
+          timestamp,
+          url,
+          author,
+          repository: "",
+        };
+        commitObject.message = commit.message;
+        commitObject.timestamp = commit.timestamp;
+        commitObject.url = commit.url;
+        commitObject.author = commit.author.name;
+        commitObject.repository = repository?.name ?? "";
+        commitList.push(commitObject);
       });
-      const repo = repository?.name ?? "";
-      return { message, timestamp, url, author, repo };
+      return commitList;
     }
   } catch (error) {
     console.error(error);
   }
 }
 
-export { getLastCommit, getCommit, getPushEvent };
+export { getPushEvent };
